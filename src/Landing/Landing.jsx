@@ -9,8 +9,8 @@ const Landing = () => {
             <h2></h2>
             <h1 className="title-hero">Contabilidad realmente sencilla</h1>
             <p>
-              Genere libros de IVA mediante el scaneo de facturas, ejecute
-              informes de clientes
+            Automatice la confección de libros de IVA mediante el escaneo inteligente de facturas. 
+            <br />Simplifique la gestión contable con informes detallados de clientes, optimice su tiempo con procesos automatizados, y asegure la precisión en cada registro. 
             </p>
 
             <div className="container-buttons-hero">
@@ -21,12 +21,11 @@ const Landing = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   width="17"
                   height="17"
-                  fillRule="currentColor"
+                  fill="#4e56a8" 
                   className="bi bi-arrow-up-right"
                   viewBox="0 0 16 16"
                   style={{marginLeft:'5px'}}
-
-               
+                  
                 >
                   <path
                     fill-rule="evenodd"

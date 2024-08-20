@@ -1,20 +1,61 @@
-import './Login.css';
+import "./Login.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-    return(
-       <section className='login-box'>
-        <div className='login-header'></div>
-        <header>Ingresar</header>
-
-        <div className='input-box'>
-            <input type="text" className='input-field' placeholder='Email' autoComplete='off' required id="" />
+  const navigate = useNavigate();
+  const handleButtonSignUp = () => {
+    navigate("/sign-up");
+  };
+  return (
+    <div className="container-login-box">
+      <div className="login-box">
+        <div className="login-header">
+          <header>¡Bienvenido!</header>
         </div>
-        <div className='input-box'>
-            <input type="text" className='input-field' placeholder='Email' autoComplete='off' required id="" />
+        <div className="input-box">
+          <input
+            type="text"
+            class="input-field"
+            placeholder="Email"
+            autocomplete="off"
+            required
+          />
         </div>
+        <div className="input-box">
+          <input
+            type="password"
+            className="input-field"
+            placeholder="Contraseña"
+            autocomplete="off"
+            required
+          />
+        </div>
+        <div className="forgot">
+          <section className="section-login">
+            <input type="checkbox" id="check" />
+            <label htmlFor="check">Recordarme</label>
+          </section>
+          <section className="section-login">
+            <a href="#" className="a-link-forgot-password">
+              Olvidé mi contraseña
+            </a>
+          </section>
+        </div>
+        <div className="input-submit">
+          <button className="submit-btn" id="submit"></button>
+          <label htmlFor="submit">Ingresar</label>
+        </div>
+        <div className="sign-up-link">
+          <p>
+            ¿No tienes cuenta?{" "}
+            <a onClick={handleButtonSignUp} className="a-link-login">
+            Regístrate acá
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-       </section>
-    )
-
-}
 export default Login;
