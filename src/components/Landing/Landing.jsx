@@ -1,5 +1,5 @@
 import "./Landing.css";
-import svg from './../../assets/Untitled.svg'
+import svg from './../../assets/Untitled1.svg'
 
 const Landing = () => {
   return (

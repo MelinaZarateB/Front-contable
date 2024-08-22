@@ -1,4 +1,4 @@
-/* Componentes */
+/* Components */
 import Login from "./components/Login/Login"
 import NavBar from "./components/NavBar/NavBar";
 import SignUp from "./components/SignUp/SignUp";
