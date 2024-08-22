@@ -1,8 +1,10 @@
-import NavBar from "./NavBar/NavBar";
-import Landing from "./Landing/Landing";
-import Dashboard from "./Dashboard/Dashboard";
-import SignUp from "./SignUp/SignUp";
-import Login from "./Login/Login";
+/* Componentes */
+import Login from "./components/Login/Login"
+import NavBar from "./components/NavBar/NavBar";
+import SignUp from "./components/SignUp/SignUp";
+import Landing from "./components/Landing/Landing";
+import Dashboard from "./components/Dashboard/Dashboard";
+/* Hooks */
 import { Route, Routes } from "react-router-dom";
 
 function App() {

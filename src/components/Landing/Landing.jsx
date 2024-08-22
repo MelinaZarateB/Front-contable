@@ -1,4 +1,5 @@
 import "./Landing.css";
+import svg from './../../assets/Untitled.svg'
 
 const Landing = () => {
   return (
@@ -65,9 +66,8 @@ const Landing = () => {
               </a>
             </div>
           </div>
-
           <div className="section-hero-image">
-            <div className="section-rondead"></div>
+            <img src={svg} alt="Imagen de laptop" />
           </div>
         </div>
       </section>

@@ -1,0 +1,124 @@
+import "./SignUp.css";
+import { useState } from "react";
+
+const SignUp = () => {
+  const [newUser, setNewUser] = useState({
+    name: "",
+    cuil: "",
+    phone: "",
+    address: "",
+    province: "",
+    city: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (event) => {
+    setNewUser({
+      ...newUser,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  return (
+    <section className="parent-sign-up">
+      <div className="container-sign-up-box">
+        <div className="sign-up-box">
+          <div className="input-box-sign-up">
+            <input
+              type="text"
+              name="name" 
+              placeholder="Nombre"
+              className="input-field-sign-up"
+              autoComplete="off"
+              value={newUser.name}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="input-box-sign-up">
+            <input
+              type="text"
+              name="cuil" 
+              placeholder="Cuil"
+              className="input-field-sign-up"
+              autoComplete="off"
+              value={newUser.cuil}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="input-box-sign-up">
+            <input
+              type="text"
+              name="phone" 
+              placeholder="Telefono"
+              className="input-field-sign-up"
+              autoComplete="off"
+              value={newUser.phone}
+              onChange={handleChange} 
+            />
+          </div>
+          <div className="input-box-sign-up">
+            <input
+              type="text"
+              name="address" 
+              placeholder="Dirección"
+              className="input-field-sign-up"
+              autoComplete="off"
+              value={newUser.address}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+
+        <div className="sign-up-box">
+          <div className="input-box-sign-up">
+            <input
+              type="text"
+              name="province" 
+              placeholder="Provincia"
+              className="input-field-sign-up"
+              autoComplete="off"
+              value={newUser.province}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="input-box-sign-up">
+            <input
+              type="text"
+              name="city"
+              placeholder="Ciudad"
+              className="input-field-sign-up"
+              autoComplete="off"
+              value={newUser.city}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="input-box-sign-up">
+            <input
+              type="text"
+              name="email"
+              placeholder="Email"
+              className="input-field-sign-up"
+              autoComplete="off"
+              value={newUser.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="input-box-sign-up">
+            <input
+              type="text"
+              name="password"
+              placeholder="Contraseña"
+              className="input-field-sign-up"
+              autoComplete="off"
+              value={newUser.password}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default SignUp;
