@@ -45,9 +45,11 @@
         align-items: center;
     }
     .section-next-text {
-        order: -1; /* Cambia el orden del texto para que aparezca primero */
+        order: -1; 
+        width: 100%;
     }
     .section-next-image {
-        order: 1; /* Mantiene el orden de la imagen después del texto */
+        order: 1; 
+        width: 100%;
     }
 }
