@@ -16,7 +16,7 @@ const NavBar = () => {
             <div className='parent-buttons-nav'>
             <div className='container-buttons-nav'>
             <button className='button-login' onClick={handleButtonLogin}>Ingresar</button>
-            <button className='button-sign-up' onClick={handleButtonSignUp}>Registrarse</button>
+            <button className='button-sign-up' onClick={handleButtonSignUp}>Regístrarse</button>
             </div>
             </div>
         </nav>

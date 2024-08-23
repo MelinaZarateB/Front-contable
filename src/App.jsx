@@ -2,8 +2,11 @@
 import Login from "./components/Login/Login"
 import NavBar from "./components/NavBar/NavBar";
 import SignUp from "./components/SignUp/SignUp";
-import Landing from "./components/Landing/Landing";
+import Footer from "./components/Footer/Footer";
 import Dashboard from "./components/Dashboard/Dashboard";
+import HeroSection from "./components/Landing/HeroSection/HeroSection";
+import NextSection from "./components/Landing/NextSection/NextSection";
+import Features from "./components/Landing/FeaturesSection/Features";
 /* Hooks */
 import { Route, Routes } from "react-router-dom";
 
@@ -16,14 +19,17 @@ function App() {
           element={
             <>
               {" "}
-              <NavBar></NavBar>
-              <Landing></Landing>
+              <NavBar />
+              <HeroSection />
+              <NextSection />
+              <Features />
+              <Footer />
             </>
           }
         ></Route>
-        <Route path="/sign-up" element={<SignUp></SignUp>}></Route>
-        <Route path="/login" element={<Login></Login>}></Route>
-        <Route path='/dashboard' element={<Dashboard></Dashboard>}></Route>
+        <Route path="/sign-up" element={<SignUp />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path='/dashboard' element={<Dashboard />}></Route>
       </Routes>
     </>
   );

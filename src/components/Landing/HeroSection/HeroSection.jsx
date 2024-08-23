@@ -1,13 +1,12 @@
-import "./Landing.css";
-import svg from './../../assets/Untitled1.svg'
+import './HeroSection.css';
+import svg from './../../../assets/Untitled2.svg';
 
-const Landing = () => {
+const HeroSection = () => {
   return (
     <>
       <section className="container-hero">
         <div className="section-hero-parent">
           <div className="section-hero-text">
-            <h2></h2>
             <h1 className="title-hero">Contabilidad realmente sencilla</h1>
             <p className="description-hero">
               Automatice la confección de libros de IVA mediante el escaneo
@@ -74,4 +73,4 @@ const Landing = () => {
     </>
   );
 };
-export default Landing;
+export default HeroSection;

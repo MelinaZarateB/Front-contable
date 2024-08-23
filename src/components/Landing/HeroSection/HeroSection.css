@@ -1,20 +1,22 @@
 .container-hero{
-   /* min-height: 100vh;*/
+    min-height: 100vh;
     width: 100%;
     display: flex;
     justify-content: center;
 }
 .title-hero{
-    font-size: 3.75rem;
-    line-height: 3.875rem;
+    font-size: 60px;
+    line-height: 72px;
     margin-top: 1.2rem;
-    font-weight: 700;
-    margin-bottom: 1.1rem;
+    font-weight: bold;
+    letter-spacing: -2.5%;
+    color: #111827;
 }
 .description-hero{
     font-size: 1.2rem;
     margin-top: 1.2rem;
-    line-height: 1.7rem;
+    line-height: 28px;
+    color: #374151;
 }
 .section-hero-parent{
     display: flex;
@@ -24,13 +26,12 @@
     gap: 5rem;
 }
 .section-hero-image{
-    display: flex;
     width: 50%;
-    justify-content: end;
+    /*display: flex;
+    justify-content: end;*/
 }
 .section-hero-image img{
     width: 100%;
-    height: 100%;
 }
 .section-hero-text{
     display: flex;
@@ -38,7 +39,9 @@
     flex-direction: column;
 }
 .container-buttons-hero-checks{
+    width: 80%;
     display: flex;
+   justify-content:space-between;
     margin-top: 1.2rem;
     margin-bottom: 1.2rem;
     gap: 1.2rem;
@@ -47,6 +50,7 @@
     display: flex;
     align-items: center;
     gap: 7px;
+    color: #374151;
 }
 .p-button-check{
     font-size: 17px;
