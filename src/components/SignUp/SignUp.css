@@ -1,14 +1,35 @@
 .parent-sign-up {
   background-color: #fafafa;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  min-width: 100vw;
+  align-items: center;
+}
+.child-sign-up{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.input-submit-sign-up label{
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  color: white;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  cursor: pointer;
 }
 .container-sign-up-box {
-  min-height: 100vh;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  max-width: 900px;
-  margin: 0 auto;
-  gap: 2rem;
+      /* min-height: 100vh; */
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      /* max-width: 900px; */
+      width: 100vw;
+      max-width: 900px;
+      margin: 0 auto;
+      gap: 2rem;
 }
 .sign-up-header {
   margin: 20px 0 40px 0;
@@ -34,6 +55,21 @@
   outline: none;
   transition: 0.3s;
 }
+.submit-btn-sign-up{
+  width: 100%;
+  height: 60px;
+  background-color: #6C76E1;
+  border: none;
+  border-radius: .75rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.submit-btn-sign-up:hover{
+  background-color: #4e56a8;
+}
+.input-submit-sign-up{
+  position: relative;
+}
 
 @media screen and (width < 992px) {
     .container-sign-up-box{
@@ -45,9 +81,13 @@
     .input-field-sign-up{
         height: 50px;
     }
-    .container-sign-up-box .sign-up-box:nth-child(1) {
-        margin-bottom: -150px
+    .submit-btn-sign-up{
+      height: 50px;
     }
+
+   /* .container-sign-up-box .sign-up-box:nth-child(1) {
+        margin-bottom: -150px
+    }*/
 }
 @media screen and (width < 500px) {
     .container-sign-up-box{

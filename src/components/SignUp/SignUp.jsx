@@ -1,7 +1,12 @@
 import "./SignUp.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const handleButtonLogin = () => {
+    navigate("/login");
+  };
   const [newUser, setNewUser] = useState({
     name: "",
     cuil: "",
@@ -22,9 +27,11 @@ const SignUp = () => {
 
   return (
     <section className="parent-sign-up">
-      <div className="container-sign-up-box">
+      <div className="child-sign-up">
+      <form className="container-sign-up-box">
         <div className="sign-up-box">
           <div className="input-box-sign-up">
+            <div>
             <input
               type="text"
               name="name" 
@@ -34,8 +41,10 @@ const SignUp = () => {
               value={newUser.name}
               onChange={handleChange}
             />
+            </div>
           </div>
           <div className="input-box-sign-up">
+            <div>
             <input
               type="text"
               name="cuil" 
@@ -45,6 +54,7 @@ const SignUp = () => {
               value={newUser.cuil}
               onChange={handleChange}
             />
+            </div>
           </div>
           <div className="input-box-sign-up">
             <input
@@ -58,6 +68,7 @@ const SignUp = () => {
             />
           </div>
           <div className="input-box-sign-up">
+            <div>
             <input
               type="text"
               name="address" 
@@ -67,11 +78,13 @@ const SignUp = () => {
               value={newUser.address}
               onChange={handleChange}
             />
+            </div>
           </div>
         </div>
 
         <div className="sign-up-box">
           <div className="input-box-sign-up">
+            <div>
             <input
               type="text"
               name="province" 
@@ -81,8 +94,10 @@ const SignUp = () => {
               value={newUser.province}
               onChange={handleChange}
             />
+            </div>
           </div>
           <div className="input-box-sign-up">
+            <div>
             <input
               type="text"
               name="city"
@@ -92,8 +107,10 @@ const SignUp = () => {
               value={newUser.city}
               onChange={handleChange}
             />
+            </div>
           </div>
           <div className="input-box-sign-up">
+            <div>
             <input
               type="text"
               name="email"
@@ -104,7 +121,9 @@ const SignUp = () => {
               onChange={handleChange}
             />
           </div>
+            </div>
           <div className="input-box-sign-up">
+            <div>
             <input
               type="text"
               name="password"
@@ -114,8 +133,24 @@ const SignUp = () => {
               value={newUser.password}
               onChange={handleChange}
             />
+            </div>
           </div>
         </div>
+      </form>
+      <div>
+        <div className="input-submit-sign-up">
+          <button className="submit-btn-sign-up" id="submit" type="submit"></button>
+          <label htmlFor="submit">Registrarse</label>
+        </div>
+        <div className="sign-up-link">
+          <p>
+            ¿Ya tienes una cuenta?{" "}
+            <a onClick={handleButtonLogin} className="a-link-login">
+              Ingresa acá
+            </a>
+          </p>
+        </div>
+      </div>
       </div>
     </section>
   );
