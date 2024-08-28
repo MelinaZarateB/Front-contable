@@ -1,12 +1,14 @@
 import "./SignUp.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import validations from "./../../utils/validations";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const handleButtonLogin = () => {
     navigate("/login");
   };
+  /* Estados */
   const [newUser, setNewUser] = useState({
     name: "",
     cuil: "",
@@ -18,139 +20,175 @@ const SignUp = () => {
     password: "",
   });
 
+  const [touchedInput, setTouchedInput] = useState({});
+
+  const [errors, setErrors] = useState({});
+
+  /* Handlers */
+  const handleTouched = (inputName) => {
+    setTouchedInput({
+      ...touchedInput,
+      [inputName]: true,
+    });
+  };
   const handleChange = (event) => {
     setNewUser({
       ...newUser,
       [event.target.name]: event.target.value,
     });
+    setErrors(
+      validations({
+        ...newUser,
+        [event.target.name]: event.target.value,
+      })
+    );
   };
 
   return (
     <section className="parent-sign-up">
       <div className="child-sign-up">
-      <form className="container-sign-up-box">
-        <div className="sign-up-box">
-          <div className="input-box-sign-up">
-            <div>
-            <input
-              type="text"
-              name="name" 
-              placeholder="Nombre"
-              className="input-field-sign-up"
-              autoComplete="off"
-              value={newUser.name}
-              onChange={handleChange}
-            />
+        <form className="container-sign-up-box">
+          <div className="sign-up-box">
+            <div className="input-box-sign-up">
+              <input
+                type="text"
+                name="name"
+                placeholder=""
+                className="input-field-sign-up"
+                autoComplete="off"
+                value={newUser.name}
+                onChange={handleChange}
+                onBlur={() => handleTouched("name")}
+              />
+              <label className="label-input">Nombre</label>
+              {errors.name && (
+                <span className="span">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    class="bi bi-exclamation-circle"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+                  </svg>
+                </span>
+              )}
             </div>
-          </div>
-          <div className="input-box-sign-up">
-            <div>
-            <input
-              type="text"
-              name="cuil" 
-              placeholder="Cuil"
-              className="input-field-sign-up"
-              autoComplete="off"
-              value={newUser.cuil}
-              onChange={handleChange}
-            />
+            <div className="input-box-sign-up">
+              <input
+                type="text"
+                name="cuil"
+                className="input-field-sign-up"
+                autoComplete="off"
+                value={newUser.cuil}
+                onChange={handleChange}
+                placeholder=""
+              />
+              <label className="label-input">Cuil</label>
             </div>
-          </div>
-          <div className="input-box-sign-up">
-            <input
-              type="text"
-              name="phone" 
-              placeholder="Telefono"
-              className="input-field-sign-up"
-              autoComplete="off"
-              value={newUser.phone}
-              onChange={handleChange} 
-            />
-          </div>
-          <div className="input-box-sign-up">
-            <div>
-            <input
-              type="text"
-              name="address" 
-              placeholder="Dirección"
-              className="input-field-sign-up"
-              autoComplete="off"
-              value={newUser.address}
-              onChange={handleChange}
-            />
-            </div>
-          </div>
-        </div>
 
-        <div className="sign-up-box">
-          <div className="input-box-sign-up">
-            <div>
-            <input
-              type="text"
-              name="province" 
-              placeholder="Provincia"
-              className="input-field-sign-up"
-              autoComplete="off"
-              value={newUser.province}
-              onChange={handleChange}
-            />
+            <div className="input-box-sign-up">
+              <input
+                type="text"
+                name="phone"
+                placeholder=""
+                className="input-field-sign-up"
+                autoComplete="off"
+                value={newUser.phone}
+                onChange={handleChange}
+                onBlur={() => handleTouched("phone")}
+              />
+              <label className="label-input">Telefono</label>
+            </div>
+            <div className="input-box-sign-up">
+              <input
+                type="text"
+                name="address"
+                placeholder=""
+                className="input-field-sign-up"
+                autoComplete="off"
+                value={newUser.address}
+                onChange={handleChange}
+                onBlur={() => handleTouched("address")}
+              />
+              <label className="label-input">Direccion</label>
             </div>
           </div>
-          <div className="input-box-sign-up">
-            <div>
-            <input
-              type="text"
-              name="city"
-              placeholder="Ciudad"
-              className="input-field-sign-up"
-              autoComplete="off"
-              value={newUser.city}
-              onChange={handleChange}
-            />
+          <div className="sign-up-box">
+            <div className="input-box-sign-up">
+              <input
+                type="text"
+                name="province"
+                placeholder=""
+                className="input-field-sign-up"
+                autoComplete="off"
+                value={newUser.province}
+                onChange={handleChange}
+              />
+              <label className="label-input">Provincia</label>
+            </div>
+            <div className="input-box-sign-up">
+              <input
+                type="text"
+                name="city"
+                placeholder=""
+                className="input-field-sign-up"
+                autoComplete="off"
+                value={newUser.city}
+                onChange={handleChange}
+                onBlur={() => handleTouched("city")}
+              />
+              <label className="label-input">Ciudad</label>
+            </div>
+            <div className="input-box-sign-up">
+                <input
+                  type="text"
+                  name="email"
+                  placeholder=""
+                  className="input-field-sign-up"
+                  autoComplete="off"
+                  value={newUser.email}
+                  onChange={handleChange}
+                  onBlur={() => handleTouched("email")}
+                />
+                <label className="label-input">Email</label>
+            </div>
+            <div className="input-box-sign-up">
+              <input
+                type="text"
+                name="password"
+                placeholder=""
+                className="input-field-sign-up"
+                autoComplete="off"
+                value={newUser.password}
+                onChange={handleChange}
+                onBlur={() => handleTouched("password")}
+              />
+              <label className="label-input">Contraseña</label>
             </div>
           </div>
-          <div className="input-box-sign-up">
-            <div>
-            <input
-              type="text"
-              name="email"
-              placeholder="Email"
-              className="input-field-sign-up"
-              autoComplete="off"
-              value={newUser.email}
-              onChange={handleChange}
-            />
+        </form>
+        <div>
+          <div className="input-submit-sign-up">
+            <button
+              className="submit-btn-sign-up"
+              id="submit"
+              type="submit"
+            ></button>
+            <label htmlFor="submit">Regístrarse</label>
           </div>
-            </div>
-          <div className="input-box-sign-up">
-            <div>
-            <input
-              type="text"
-              name="password"
-              placeholder="Contraseña"
-              className="input-field-sign-up"
-              autoComplete="off"
-              value={newUser.password}
-              onChange={handleChange}
-            />
-            </div>
+          <div className="sign-up-link">
+            <p>
+              ¿Ya tienes una cuenta?{" "}
+              <a onClick={handleButtonLogin} className="a-link-login">
+                Ingresa acá
+              </a>
+            </p>
           </div>
         </div>
-      </form>
-      <div>
-        <div className="input-submit-sign-up">
-          <button className="submit-btn-sign-up" id="submit" type="submit"></button>
-          <label htmlFor="submit">Registrarse</label>
-        </div>
-        <div className="sign-up-link">
-          <p>
-            ¿Ya tienes una cuenta?{" "}
-            <a onClick={handleButtonLogin} className="a-link-login">
-              Ingresa acá
-            </a>
-          </p>
-        </div>
-      </div>
       </div>
     </section>
   );
