@@ -4,28 +4,31 @@ const validations = (inputs) => {
   const regexName = /^[^\d]+$/;
 
   if (inputs.name.trim() === "") {
-    errors.name = "El nombre es requerido";
+    errors.name = "Campo requerido";
   } else {
     if (!regexName.test(inputs.name)) {
-      errors.name = "El nombre no puede contener números";
+      errors.name = "Campo requerido";
     }
     if (inputs.name.length > 25) {
-      errors.name = "El nombre es muy largo";
+      errors.name = "Campo requerido";
     }
   }
 
   if(inputs.phone.trim() === "") {
-    errors.phone = "El telefono es requerido";
+    errors.phone = "Campo requerido";
   }
 
   if(inputs.address.trim() === "") {
-    errors.address = "La direccion es requerida";
+    errors.address = "Campo requerido";
   }
   if(inputs.city.trim() === "") {
-    errors.city = "La ciudad es requerida";
+    errors.city = "Campo requerido";
   }
   if(inputs.email.trim() === "") {
-    errors.email = "El email es requerido";
+    errors.email = "Campo requerido";
+  }
+  if(inputs.password.trim() === "") {
+    errors.password = "Campo requerido";
   }
   return errors
 

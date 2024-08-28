@@ -3,6 +3,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import validations from "./../../utils/validations";
 import { provinces } from "../../utils/provinces";
+/* Icons */
+import visibilityOn from "./../../assets/visibility-on.svg";
+import visibilityOff from "./../../assets/visibility-off.svg";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -25,6 +28,8 @@ const SignUp = () => {
 
   const [errors, setErrors] = useState({});
 
+  const [isVisibilyPassword, setIsVisibilityPassword] = useState(false)
+
   /* Handlers */
   const handleTouched = (inputName) => {
     setTouchedInput({
@@ -44,6 +49,10 @@ const SignUp = () => {
       })
     );
   };
+  const visibilityPassword = () => {
+    if(isVisibilyPassword === false) setIsVisibilityPassword(true)
+      else{setIsVisibilityPassword(false)}
+  }
 
   return (
     <section className="parent-sign-up">
@@ -63,6 +72,7 @@ const SignUp = () => {
                 value={newUser.name}
                 onChange={handleChange}
                 onBlur={() => handleTouched("name")}
+                style={{ border: errors.name ? "1px solid red" : "" }}
               />
               <label className="label-input">Nombre</label>
               {errors.name && (
@@ -93,7 +103,6 @@ const SignUp = () => {
               />
               <label className="label-input">Cuil</label>
             </div>
-
             <div className="input-box-sign-up">
               <input
                 type="text"
@@ -104,8 +113,24 @@ const SignUp = () => {
                 value={newUser.phone}
                 onChange={handleChange}
                 onBlur={() => handleTouched("phone")}
+                style={{ border: errors.phone ? "1px solid red" : "" }}
               />
               <label className="label-input">Teléfono</label>
+              {errors.phone && (
+                <span className="span">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    class="bi bi-exclamation-circle"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+                  </svg>
+                </span>
+              )}
             </div>
             <div className="input-box-sign-up">
               <input
@@ -117,8 +142,24 @@ const SignUp = () => {
                 value={newUser.address}
                 onChange={handleChange}
                 onBlur={() => handleTouched("address")}
+                style={{ border: errors.address ? "1px solid red" : "" }}
               />
               <label className="label-input">Dirección</label>
+              {errors.address && (
+                <span className="span">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    class="bi bi-exclamation-circle"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+                  </svg>
+                </span>
+              )}
             </div>
           </div>
           <div className="sign-up-box">
@@ -133,7 +174,10 @@ const SignUp = () => {
                   className="input-field-sign-up"
                   value={newUser.province}
                   onChange={handleChange}
-                  style={{ color: newUser.province ? '#000' : '#555', cursor: 'pointer' }}
+                  style={{
+                    color: newUser.province ? "#000" : "#555",
+                    cursor: "pointer",
+                  }}
                 >
                   <option value="" disabled hidden>
                     Seleccione una provincia
@@ -157,8 +201,24 @@ const SignUp = () => {
                 value={newUser.city}
                 onChange={handleChange}
                 onBlur={() => handleTouched("city")}
+                style={{ border: errors.city ? "1px solid red" : "" }}
               />
               <label className="label-input">Ciudad</label>
+              {errors.city && (
+                <span className="span">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    class="bi bi-exclamation-circle"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+                  </svg>
+                </span>
+              )}
             </div>
             <div className="input-box-sign-up">
               <input
@@ -170,21 +230,57 @@ const SignUp = () => {
                 value={newUser.email}
                 onChange={handleChange}
                 onBlur={() => handleTouched("email")}
+                style={{ border: errors.email ? "1px solid red" : "" }}
               />
               <label className="label-input">Email</label>
+              {errors.email && (
+                <span className="span">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    class="bi bi-exclamation-circle"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+                  </svg>
+                </span>
+              )}
             </div>
-            <div className="input-box-sign-up">
+            <div className="input-box-sign-up password">
               <input
-                type="text"
+                type={isVisibilyPassword ? 'text' : 'password'}
                 name="password"
                 placeholder=""
-                className="input-field-sign-up"
+                className="input-field-sign-up password"
                 autoComplete="off"
                 value={newUser.password}
                 onChange={handleChange}
                 onBlur={() => handleTouched("password")}
+                style={{ border: errors.password ? "1px solid red" : "" }}
               />
               <label className="label-input">Contraseña</label>
+              {isVisibilyPassword === false ?  <img src={visibilityOff} style={{cursor: 'pointer'}} onClick={visibilityPassword}/> 
+              :
+              <img src={visibilityOn} style={{cursor: 'pointer'}} onClick={visibilityPassword}></img>}
+      
+              {errors.password && (
+                <span className="span password">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    class="bi bi-exclamation-circle"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+                  </svg>
+                </span>
+              )}
             </div>
           </div>
         </form>
@@ -194,6 +290,14 @@ const SignUp = () => {
               className="submit-btn-sign-up"
               id="submit"
               type="submit"
+              disabled={
+                errors.name ||
+                errors.phone ||
+                errors.address ||
+                errors.city ||
+                errors.email ||
+                errors.password
+              }
             ></button>
             <label htmlFor="submit">Regístrarse</label>
           </div>

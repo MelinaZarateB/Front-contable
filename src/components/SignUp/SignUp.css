@@ -154,3 +154,17 @@
   display: inline-block;
   width: 100%;
 }
+.input-field-sign-up.password{
+  width: 85%;
+}
+.span.password{
+  right: 75px;
+}
+.input-box-sign-up.password{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.icon-visibility:active{
+  display: none;
+}
