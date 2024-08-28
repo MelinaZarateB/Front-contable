@@ -47,6 +47,9 @@ const SignUp = () => {
   return (
     <section className="parent-sign-up">
       <div className="child-sign-up">
+      <div className="sign-up-header">
+          <header>¡Regístrate y optimiza tu gestión hoy!</header>
+        </div>
         <form className="container-sign-up-box">
           <div className="sign-up-box">
             <div className="input-box-sign-up">

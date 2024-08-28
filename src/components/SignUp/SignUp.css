@@ -11,6 +11,10 @@
   flex-direction: column;
   gap: 20px;
 }
+.sign-up-header{
+  text-align: center;
+  margin: 20px 0 20px 0;
+}
 .input-submit-sign-up label{
   position: absolute;
   top: 45%;
