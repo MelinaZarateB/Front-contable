@@ -60,12 +60,7 @@
   justify-content: center;
   flex-direction: column;
 }
-.form-label{
-  width: 100%;
-  display: grid;
-  grid-template-areas: 'input';
-  position: relative;
-}
+
 .input-box-sign-up{
   margin-bottom: 15px;
   position: relative;
@@ -134,4 +129,28 @@
     .container-sign-up-box{
         max-width: 300px;
     }
+}
+.floating-label {
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 1rem;
+  color: #555;
+  pointer-events: none;
+  transition: 0.3s;
+}
+.select-container.has-value .floating-label {
+  display: flex;
+  top: -10px;
+  left: 1rem;
+  font-size: 15px;
+  color: #555;
+  background-color: #fafafa;
+  padding: 0 5px;
+
+}
+.select-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
 }

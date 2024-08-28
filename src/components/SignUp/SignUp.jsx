@@ -2,6 +2,7 @@ import "./SignUp.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import validations from "./../../utils/validations";
+import { provinces } from "../../utils/provinces";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const SignUp = () => {
   return (
     <section className="parent-sign-up">
       <div className="child-sign-up">
-      <div className="sign-up-header">
+        <div className="sign-up-header">
           <header>¡Regístrate y optimiza tu gestión hoy!</header>
         </div>
         <form className="container-sign-up-box">
@@ -104,7 +105,7 @@ const SignUp = () => {
                 onChange={handleChange}
                 onBlur={() => handleTouched("phone")}
               />
-              <label className="label-input">Telefono</label>
+              <label className="label-input">Teléfono</label>
             </div>
             <div className="input-box-sign-up">
               <input
@@ -117,21 +118,34 @@ const SignUp = () => {
                 onChange={handleChange}
                 onBlur={() => handleTouched("address")}
               />
-              <label className="label-input">Direccion</label>
+              <label className="label-input">Dirección</label>
             </div>
           </div>
           <div className="sign-up-box">
             <div className="input-box-sign-up">
-              <input
-                type="text"
-                name="province"
-                placeholder=""
-                className="input-field-sign-up"
-                autoComplete="off"
-                value={newUser.province}
-                onChange={handleChange}
-              />
-              <label className="label-input">Provincia</label>
+              <div
+                className={`select-container ${
+                  newUser.province ? "has-value" : ""
+                }`}
+              >
+                <select
+                  name="province"
+                  className="input-field-sign-up"
+                  value={newUser.province}
+                  onChange={handleChange}
+                  style={{ color: newUser.province ? '#000' : '#555', cursor: 'pointer' }}
+                >
+                  <option value="" disabled hidden>
+                    Seleccione una provincia
+                  </option>
+                  {provinces?.map((province, i) => (
+                    <option key={i} value={province}>
+                      {province}
+                    </option>
+                  ))}
+                </select>
+                <div className="floating-label">Seleccione una provincia</div>
+              </div>
             </div>
             <div className="input-box-sign-up">
               <input
@@ -147,17 +161,17 @@ const SignUp = () => {
               <label className="label-input">Ciudad</label>
             </div>
             <div className="input-box-sign-up">
-                <input
-                  type="text"
-                  name="email"
-                  placeholder=""
-                  className="input-field-sign-up"
-                  autoComplete="off"
-                  value={newUser.email}
-                  onChange={handleChange}
-                  onBlur={() => handleTouched("email")}
-                />
-                <label className="label-input">Email</label>
+              <input
+                type="text"
+                name="email"
+                placeholder=""
+                className="input-field-sign-up"
+                autoComplete="off"
+                value={newUser.email}
+                onChange={handleChange}
+                onBlur={() => handleTouched("email")}
+              />
+              <label className="label-input">Email</label>
             </div>
             <div className="input-box-sign-up">
               <input
