@@ -74,11 +74,13 @@
   padding: 0 5px;
   pointer-events: none;
   transition: .3s;
+  color: #555;
 }
 .input-box-sign-up .input-field-sign-up:focus~.label-input,
 .input-box-sign-up .input-field-sign-up:not(:placeholder-shown) + .label-input{
   top: 0;
   background-color: #fafafa;
+  font-size: 15px;
 }
 
 .input-field-sign-up {
