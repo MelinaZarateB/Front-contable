@@ -95,6 +95,12 @@
 .submit-btn:hover {
   background-color: #4e56a8;
 }
+.submit-btn:disabled {
+    background-color: #ccc; /* Cambia el color de fondo */
+    color: #999; /* Cambia el color del texto */
+    cursor: not-allowed; /* Cambia el cursor para indicar que está deshabilitado */
+    opacity: 0.6; /* Reduce la opacidad */
+  }
 .sign-up-link {
   text-align: center;
   font-size: 15px;
@@ -106,7 +112,6 @@
   font-weight: 600;
 }
 .input-box {
-  margin-bottom: 15px;
   position: relative;
 }
 .label-input {
@@ -124,4 +129,24 @@
   top: 0;
   background-color: #fafafa;
   font-size: 15px;
+}
+.input-field.password{
+    width: 85%;
+}
+.input-child-password{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.span{
+    position: absolute;
+    color: red;
+    right: 10px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+}
+.container-input-login{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }

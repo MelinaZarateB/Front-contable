@@ -1,8 +1,9 @@
 import "./SignUp.css";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import validations from "./../../utils/validations";
 import { provinces } from "../../utils/provinces";
+/* Hooks */
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 /* Icons */
 import visibilityOn from "./../../assets/visibility-on.svg";
 import visibilityOff from "./../../assets/visibility-off.svg";
@@ -28,7 +29,7 @@ const SignUp = () => {
 
   const [errors, setErrors] = useState({});
 
-  const [isVisibilyPassword, setIsVisibilityPassword] = useState(false)
+  const [isVisibilyPassword, setIsVisibilityPassword] = useState(false);
 
   /* Handlers */
   const handleTouched = (inputName) => {
@@ -50,9 +51,11 @@ const SignUp = () => {
     );
   };
   const visibilityPassword = () => {
-    if(isVisibilyPassword === false) setIsVisibilityPassword(true)
-      else{setIsVisibilityPassword(false)}
-  }
+    if (isVisibilyPassword === false) setIsVisibilityPassword(true);
+    else {
+      setIsVisibilityPassword(false);
+    }
+  };
 
   return (
     <section className="parent-sign-up">
@@ -72,7 +75,10 @@ const SignUp = () => {
                 value={newUser.name}
                 onChange={handleChange}
                 onBlur={() => handleTouched("name")}
-                style={{ border: errors.name ? "1px solid red" : "" }}
+                style={{
+                  border:
+                    errors.name && touchedInput.name ? "1px solid red" : "",
+                }}
               />
               <label className="label-input">Nombre</label>
               {errors.name && (
@@ -93,8 +99,11 @@ const SignUp = () => {
             </div>
             <div className="input-box-sign-up">
               <input
-                type="text"
+                type="number"
                 name="cuil"
+                pattern="\d{11}"
+                inputmode="numeric"
+                maxlength="11"
                 className="input-field-sign-up"
                 autoComplete="off"
                 value={newUser.cuil}
@@ -142,7 +151,12 @@ const SignUp = () => {
                 value={newUser.address}
                 onChange={handleChange}
                 onBlur={() => handleTouched("address")}
-                style={{ border: errors.address ? "1px solid red" : "" }}
+                style={{
+                  border:
+                    errors.address && touchedInput.address
+                      ? "1px solid red"
+                      : "",
+                }}
               />
               <label className="label-input">Dirección</label>
               {errors.address && (
@@ -201,7 +215,10 @@ const SignUp = () => {
                 value={newUser.city}
                 onChange={handleChange}
                 onBlur={() => handleTouched("city")}
-                style={{ border: errors.city ? "1px solid red" : "" }}
+                style={{
+                  border:
+                    errors.city && touchedInput.city ? "1px solid red" : "",
+                }}
               />
               <label className="label-input">Ciudad</label>
               {errors.city && (
@@ -230,7 +247,10 @@ const SignUp = () => {
                 value={newUser.email}
                 onChange={handleChange}
                 onBlur={() => handleTouched("email")}
-                style={{ border: errors.email ? "1px solid red" : "" }}
+                style={{
+                  border:
+                    errors.email && touchedInput.email ? "1px solid red" : "",
+                }}
               />
               <label className="label-input">Email</label>
               {errors.email && (
@@ -251,7 +271,7 @@ const SignUp = () => {
             </div>
             <div className="input-box-sign-up password">
               <input
-                type={isVisibilyPassword ? 'text' : 'password'}
+                type={isVisibilyPassword ? "text" : "password"}
                 name="password"
                 placeholder=""
                 className="input-field-sign-up password"
@@ -259,13 +279,27 @@ const SignUp = () => {
                 value={newUser.password}
                 onChange={handleChange}
                 onBlur={() => handleTouched("password")}
-                style={{ border: errors.password ? "1px solid red" : "" }}
+                style={{
+                  border:
+                    errors.password && touchedInput.password
+                      ? "1px solid red"
+                      : "",
+                }}
               />
               <label className="label-input">Contraseña</label>
-              {isVisibilyPassword === false ?  <img src={visibilityOff} style={{cursor: 'pointer'}} onClick={visibilityPassword}/> 
-              :
-              <img src={visibilityOn} style={{cursor: 'pointer'}} onClick={visibilityPassword}></img>}
-      
+              {isVisibilyPassword === false ? (
+                <img
+                  src={visibilityOff}
+                  style={{ cursor: "pointer" }}
+                  onClick={visibilityPassword}
+                />
+              ) : (
+                <img
+                  src={visibilityOn}
+                  style={{ cursor: "pointer" }}
+                  onClick={visibilityPassword}
+                ></img>
+              )}
               {errors.password && (
                 <span className="span password">
                   <svg
@@ -292,11 +326,17 @@ const SignUp = () => {
               type="submit"
               disabled={
                 errors.name ||
+                !newUser.name ||
                 errors.phone ||
+                !newUser.phone ||
                 errors.address ||
+                !newUser.address ||
                 errors.city ||
+                !newUser.city ||
                 errors.email ||
-                errors.password
+                !newUser.email ||
+                errors.password ||
+                !newUser.password
               }
             ></button>
             <label htmlFor="submit">Regístrarse</label>
