@@ -2,15 +2,13 @@ const validations = (inputs) => {
   const errors = {};
 
   const regexName = /^[^\d]+$/;
+  const regexPassword = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>_+\-]).{8,}$/;
 
   if (inputs.name.trim() === "") {
     errors.name = "Campo requerido";
   } else {
     if (!regexName.test(inputs.name)) {
       errors.name = "Solo se permiten letras";
-    }
-    if (inputs.name.length > 25) {
-      errors.name = "Campo requerido";
     }
   }
 
@@ -27,7 +25,7 @@ const validations = (inputs) => {
   if(inputs.email.trim() === "") {
     errors.email = "Campo requerido";
   }
-  if(inputs.password.trim() === "") {
+  if(!regexPassword.test(inputs.password)) {
     errors.password = "Campo requerido";
   }
   return errors
