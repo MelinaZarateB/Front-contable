@@ -6,7 +6,7 @@ const validationsLogin = (inputs) => {
     if(inputs.email.trim() === "") {
         errors.email = 'Campo requerido';
     }
-    else if (!regex.test(inputs.email)) {  // Aquí debes comprobar si NO cumple con la expresión regular
+    else if (!regex.test(inputs.email)) { 
         errors.email = 'Email inválido';
     }
     if(inputs.password.trim() === "") {

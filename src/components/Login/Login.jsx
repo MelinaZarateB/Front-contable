@@ -1,5 +1,4 @@
 import "./Login.css";
-import validations from "../../utils/validationsLogin";
 /* Hooks */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -71,25 +70,7 @@ const Login = () => {
                 onBlur={() => handleTouched("email")}
               />
               <label className="label-input">Email</label>
-            {/* {errors.email && touchedInput.email &&(
-                <span className="span">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    class="bi bi-exclamation-circle"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
-                  </svg>
-                </span>
-              )}*/}  
             </div>
-           {/* {errors.email && touchedInput.email && (
-              <p style={{ color: "red", marginTop: '5px', marginLeft: '10px' }}>{errors.email}</p>
-            )}*/} 
           </div>
           <div>
           <div className="input-box password">
@@ -118,26 +99,8 @@ const Login = () => {
                   onClick={visibilityPassword}
                 ></img>
               )}
-            {/*  {errors.password && touchedInput.password && (
-                <span className="span password">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    class="bi bi-exclamation-circle"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
-                  </svg>
-                </span>
-              )}  */} 
             </div>
           </div>
-          {/* {errors.password && touchedInput.password &&(
-              <p style={{ color: "red", marginTop: '5px', marginLeft: '10px' }}>{errors.password}</p>
-            )}*/}
           </div>
           <div className="forgot">
             <section className="section-login">
@@ -161,7 +124,7 @@ const Login = () => {
             errors.password
           }></button>
           <label htmlFor="submit"
-         >Ingresar</label>
+        >Ingresar</label>
         </div>
         <div className="sign-up-link">
           <p>

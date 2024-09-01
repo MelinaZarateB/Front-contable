@@ -8,11 +8,16 @@ import { useNavigate } from "react-router-dom";
 import visibilityOn from "./../../assets/visibility-on.svg";
 import visibilityOff from "./../../assets/visibility-off.svg";
 import warning from "./../../assets/warning.svg";
+import queryString from 'query-string';
 
 const SignUp = () => {
   const navigate = useNavigate();
   const handleButtonLogin = () => {
     navigate("/login");
+  };
+  const handleCheckEmail = () => {
+    const query = queryString.stringify({ email: newUser.email });
+    navigate(`/check-email?${query}`);
   };
   /* Estados */
   const [newUser, setNewUser] = useState({
@@ -190,6 +195,10 @@ const SignUp = () => {
                   </span>
                 )}
               </div>
+              <div className="section-phone-request">
+
+              </div>
+
               {errors.phone && touchedInput.phone && (
                 <p
                   style={{ color: "red", marginTop: "4px", marginLeft: "10px" }}
@@ -423,6 +432,7 @@ const SignUp = () => {
               className="submit-btn-sign-up"
               id="submit"
               type="submit"
+              onClick={handleCheckEmail}
               disabled={
                 errors.name ||
                 !newUser.name ||
