@@ -25,6 +25,9 @@ const Login = () => {
   const handleButtonSignUp = () => {
     navigate("/sign-up");
   };
+  const handleRestorePassword = () => {
+    navigate("/restore-password")
+  }
   const handleTouched = (inputName) => {
     setTouchedInput({
       ...touchedInput,
@@ -108,7 +111,7 @@ const Login = () => {
               <label htmlFor="check">Recordarme</label>
             </section>
             <section className="section-login">
-              <a href="#" className="a-link-forgot-password">
+              <a href="#" className="a-link-forgot-password" onClick={handleRestorePassword}>
                 Olvidé mi contraseña
               </a>
             </section>
