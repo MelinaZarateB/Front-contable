@@ -89,7 +89,10 @@
   border-radius: 0.75rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 0 25px;
-  
+}
+.input-field-sign-up.select{
+  padding: 0;
+  padding-left: 15px;
 }
 .submit-btn-sign-up{
   width: 100%;
@@ -119,6 +122,7 @@
         grid-template-columns: 1fr;
         max-width: 440px;
         gap: 0;
+        gap: 15px;
         
     }
     .input-field-sign-up{
@@ -153,7 +157,6 @@
   color: #555;
   background-color: #fafafa;
   padding: 0 5px;
-
 }
 .select-container {
   position: relative;

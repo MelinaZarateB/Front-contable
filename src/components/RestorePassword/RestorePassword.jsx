@@ -67,7 +67,8 @@ const RestorePassword = () => {
           } onClick={handleVerificationEmail}>Recuperar contraseña</button>
           <div className="sign-up-link">
             <p>
-              ¿Volver al inicio de sesion?{" "}
+            ¿Volver al inicio de sesión?
+            {" "}
               <a className="a-link-login" onClick={handleLogin}>
                 Click aquí
               </a>

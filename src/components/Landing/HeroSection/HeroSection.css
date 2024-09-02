@@ -59,7 +59,8 @@
 .container-buttons-hero{
     display: flex;
     align-items: center;
-    gap: 1.2rem
+    gap: 1.2rem;
+    margin-top: 1.1rem;
 }
 @media screen and (width < 490px) {
     .container-buttons-hero{
@@ -99,7 +100,7 @@
     width: 200px;
     height: 200px;
 }
-/* Para tablet*/
+/* Para tablet */
 @media screen and (width < 768px) {
     .section-hero-parent{
         flex-direction: column;

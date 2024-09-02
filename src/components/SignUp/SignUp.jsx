@@ -260,7 +260,7 @@ const SignUp = () => {
               >
                 <select
                   name="province"
-                  className="input-field-sign-up"
+                  className="input-field-sign-up select"
                   value={newUser.province}
                   onChange={handleChange}
                   style={{

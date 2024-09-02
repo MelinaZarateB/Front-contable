@@ -69,7 +69,7 @@ const ChangePassword = () => {
                 onClick={visibilityPassword}
               ></img>
             )}
-            {errors.password && touchedInput.password && (
+            {errors.password && (
               <span className="span password">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
