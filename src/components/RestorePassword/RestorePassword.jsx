@@ -2,6 +2,7 @@ import "./RestorePassword.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { validationRestorePassword } from "../../utils/validations";
+import queryString from 'query-string';
 
 const RestorePassword = () => {
   const navigate = useNavigate();
@@ -16,6 +17,10 @@ const RestorePassword = () => {
   /* Handlers */
   const handleLogin = () => {
     navigate("/login");
+  };
+  const handleVerificationEmail = () => {
+    const query = queryString.stringify({ email: email.email });
+    navigate(`/check-email?${query}`);
   };
   const handleChange = (event) => {
     setEmail({
@@ -59,7 +64,7 @@ const RestorePassword = () => {
           <button className="button-restore"
           disabled={
           !email.email || errors.email
-          }>Recuperar contraseña</button>
+          } onClick={handleVerificationEmail}>Recuperar contraseña</button>
           <div className="sign-up-link">
             <p>
               ¿Volver al inicio de sesion?{" "}
