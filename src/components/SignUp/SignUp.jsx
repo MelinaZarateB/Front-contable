@@ -1,5 +1,5 @@
 import "./SignUp.css";
-import validations from "./../../utils/validations";
+import { validations } from "./../../utils/validations";
 import { provinces } from "../../utils/provinces";
 /* Hooks */
 import { useState } from "react";

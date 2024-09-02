@@ -1,7 +1,7 @@
 
 const validationsLogin = (inputs) => {
     const errors = {}
-    const regex = /^[^@]+@[^@]+$/;
+    const regex = /^[^@\s]+@[^@\s]+\.[cC][oO][mM]$/;
 
     if(inputs.email.trim() === "") {
         errors.email = 'Campo requerido';

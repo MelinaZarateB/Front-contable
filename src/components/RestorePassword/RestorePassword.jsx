@@ -1,16 +1,19 @@
 import "./RestorePassword.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { validationRestorePassword } from "../../utils/validations";
 
 const RestorePassword = () => {
-
   const navigate = useNavigate();
+
+  /* States */
   const [email, setEmail] = useState({
     email: "",
   });
-  console.log(email.email)
+  console.log(email.email);
+  const [errors, setErrors] = useState({});
 
- /* Handlers */
+  /* Handlers */
   const handleLogin = () => {
     navigate("/login");
   };
@@ -19,6 +22,12 @@ const RestorePassword = () => {
       ...email,
       [event.target.name]: event.target.value,
     });
+    setErrors(
+      validationRestorePassword({
+        ...email,
+        [event.target.name]: event.target.value,
+      })
+    );
   };
   return (
     <section className="container-restore-password">
@@ -47,7 +56,10 @@ const RestorePassword = () => {
           <label className="label-input">Email</label>
         </form>
         <div>
-          <button className="button-restore">Recuperar contraseña</button>
+          <button className="button-restore"
+          disabled={
+          !email.email || errors.email
+          }>Recuperar contraseña</button>
           <div className="sign-up-link">
             <p>
               ¿Volver al inicio de sesion?{" "}
