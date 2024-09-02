@@ -7,6 +7,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import HeroSection from "./components/Landing/HeroSection/HeroSection";
 import NextSection from "./components/Landing/NextSection/NextSection";
 import Features from "./components/Landing/FeaturesSection/Features";
+import ChangePassword from "./components/ChangePassword/ChangePassword";
 import RestorePassword from "./components/RestorePassword/RestorePassword";
 import SignUpVerification from "./components/SignUpVerification/SignUpVerification";
 /* Hooks */
@@ -33,7 +34,8 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/dashboard" element={<Dashboard />}></Route>
         <Route path="/check-email" element={<SignUpVerification />}></Route>
-        <Route path="/restore-password" element={<RestorePassword></RestorePassword>}></Route>
+        <Route path="/restore-password" element={<RestorePassword />}></Route>
+        <Route path="/change-password" element={<ChangePassword />}></Route>
       </Routes>
     </>
   );

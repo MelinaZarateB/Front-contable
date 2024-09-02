@@ -53,4 +53,13 @@ const validationRestorePassword = (input) => {
   }
   return errors;
 };
-export { validations, validationsLogin, validationRestorePassword };
+
+const changePassword = (input) => {
+  const errors = {};
+
+  if(!regexPassword.test(input.password) || input.password.trim() === "") {
+    errors.password = 'Campo requerido';
+  };
+  return errors;
+}
+export { validations, validationsLogin, validationRestorePassword, changePassword };
