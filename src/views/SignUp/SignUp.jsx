@@ -9,8 +9,11 @@ import visibilityOn from "./../../assets/visibility-on.svg";
 import visibilityOff from "./../../assets/visibility-off.svg";
 import warning from "./../../assets/warning.svg";
 import queryString from 'query-string';
+import { useDispatch } from "react-redux";
+import { signUp } from "../../redux/actions";
 
 const SignUp = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const handleButtonLogin = () => {
     navigate("/login");
@@ -38,15 +41,6 @@ const SignUp = () => {
     }
   };
 
-  console.log(newUser.name);
-  console.log(newUser.cuil);
-  console.log(newUser.phone);
-  console.log(newUser.address);
-  console.log(newUser.province);
-  console.log(newUser.city);
-  console.log(newUser.email);
-  console.log(newUser.password);
-
   const [touchedInput, setTouchedInput] = useState({});
 
   const [errors, setErrors] = useState({});
@@ -54,6 +48,10 @@ const SignUp = () => {
   const [isVisibilyPassword, setIsVisibilityPassword] = useState(false);
 
   /* Handlers */
+  const handleInputs = (e) => {
+    e.preventDefault()
+    dispatch(signUp(newUser))
+  }
   const handleTouched = (inputName) => {
     setTouchedInput({
       ...touchedInput,
@@ -432,7 +430,7 @@ const SignUp = () => {
               className="submit-btn-sign-up"
               id="submit"
               type="submit"
-              onClick={handleCheckEmail}
+              onClick={handleInputs}
               disabled={
                 errors.name ||
                 !newUser.name ||

@@ -1,5 +1,5 @@
 import './HeroSection.css';
-import svg from './../../../assets/Untitled2.svg';
+import svg from './../../assets/Untitled2.svg';
 
 const HeroSection = () => {
   return (

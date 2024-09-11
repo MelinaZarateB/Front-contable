@@ -1,0 +1,25 @@
+.container-dashboard {
+    overflow-x: hidden;
+    display: grid;
+    grid-template-columns: auto 1fr; /* La primera columna es la sidebar y la segunda es el contenido */
+    grid-template-rows: auto 1fr; /* La primera fila es la nav y la segunda es el contenido */
+}
+
+.container-sidebar {
+    grid-column: 1; /* Asigna la sidebar a la primera columna */
+}
+
+.nav-dashboard {
+    grid-column: 2; /* Asigna la nav al área restante */
+}
+
+/* Media query para pantallas de menos de 768px */
+@media screen and (max-width: 768px) {
+    .container-sidebar {
+        display: none; /* Oculta la sidebar */
+    }
+
+    .container-dashboard {
+        grid-template-columns: 1fr; /* Colapsa a una sola columna */
+    }
+}

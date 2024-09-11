@@ -1,15 +1,15 @@
 /* Components */
-import Login from "./components/Login/Login"
+import Login from "./views/Login/Login";
 import NavBar from "./components/NavBar/NavBar";
-import SignUp from "./components/SignUp/SignUp";
+import SignUp from "./views/SignUp/SignUp";
 import Footer from "./components/Footer/Footer";
-import Dashboard from "./components/Dashboard/Dashboard";
-import HeroSection from "./components/Landing/HeroSection/HeroSection";
-import NextSection from "./components/Landing/NextSection/NextSection";
-import Features from "./components/Landing/FeaturesSection/Features";
-import ChangePassword from "./components/ChangePassword/ChangePassword";
-import RestorePassword from "./components/RestorePassword/RestorePassword";
-import SignUpVerification from "./components/SignUpVerification/SignUpVerification";
+import Dashboard from "./views/Dashboard/Dashboard";
+import ChangePassword from "./views/ChangePassword/ChangePassword";
+import RestorePassword from "./views/RestorePassword/RestorePassword";
+import SignUpVerification from "./views/SignUpVerification/SignUpVerification";
+import UploadInvoices from "./views/UploadInvoices/UploadInvoices";
+import AccountActivated from "./views/AccountActivated/AccountActivated";
+import Landing from "./views/Landing/Landing";
 /* Hooks */
 import { Route, Routes } from "react-router-dom";
 
@@ -23,9 +23,7 @@ function App() {
             <>
               {" "}
               <NavBar />
-              <HeroSection />
-              <NextSection />
-              <Features />
+              <Landing></Landing>
               <Footer />
             </>
           }
@@ -36,9 +34,10 @@ function App() {
         <Route path="/check-email" element={<SignUpVerification />}></Route>
         <Route path="/restore-password" element={<RestorePassword />}></Route>
         <Route path="/change-password" element={<ChangePassword />}></Route>
+        <Route path="/upload-invoices" element={<UploadInvoices />}></Route>
+        <Route path="/account-activated" element={<AccountActivated />}></Route>
       </Routes>
     </>
   );
 }
-
 export default App;

@@ -1,0 +1,18 @@
+.container-account-activated{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fafafa;
+}
+.activated-box{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: 440px;
+    height: 480px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}

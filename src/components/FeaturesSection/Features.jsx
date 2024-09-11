@@ -1,8 +1,8 @@
 import "./Features.css";
 /* Icons */
-import reloj from './../../../assets/reloj.svg';
-import statistics from './../../../assets/estadistica.svg';
-import doubleCheck from './../../../assets/double-check.svg';
+import reloj from './../../assets/reloj.svg';
+import statistics from './../../assets/estadistica.svg';
+import doubleCheck from './../../assets/double-check.svg';
 
 const Features = () => {
   return (

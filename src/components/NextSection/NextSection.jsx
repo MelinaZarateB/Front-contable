@@ -1,5 +1,5 @@
 import "./NextSection.css";
-import svg from "./../../../assets/Component2.svg";
+import svg from "./../../assets/Component2.svg";
 
 const NextSection = () => {
   return (
