@@ -1,38 +1,48 @@
 import "./SignUp.css";
 import { validations } from "./../../utils/validations";
 import { provinces } from "../../utils/provinces";
+import { signUp, checkEmail } from "../../redux/actions";
 /* Hooks */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import queryString from "query-string";
 /* Icons */
 import visibilityOn from "./../../assets/visibility-on.svg";
 import visibilityOff from "./../../assets/visibility-off.svg";
 import warning from "./../../assets/warning.svg";
-import queryString from 'query-string';
-import { useDispatch } from "react-redux";
-import { signUp } from "../../redux/actions";
+import Spinner from './../../utils/Spinner/Spinner'
 
 const SignUp = () => {
-  const dispatch = useDispatch()
+  const signUpMessage = useSelector((state) => state.signUpMessage);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleButtonLogin = () => {
     navigate("/login");
   };
-  const handleCheckEmail = () => {
-    const query = queryString.stringify({ email: newUser.email });
-    navigate(`/check-email?${query}`);
-  };
+
   /* Estados */
   const [newUser, setNewUser] = useState({
-    name: "",
+    username: "",
     cuil: "",
     phone: "",
     address: "",
-    province: "",
     city: "",
+    status: "pending",
     email: "",
     password: "",
+    isActive: "false",
+    role: "administrador",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const handleCheckEmail = () => {
+    if (newUser.email) {
+      const query = queryString.stringify({ email: newUser.email });
+      navigate(`/check-email?${query}`);
+    }
+  };
   const [viewRequestPass, setViewRequestPass] = useState(false);
   const viewRequest = () => {
     if (viewRequestPass === false) setViewRequestPass(true);
@@ -40,6 +50,11 @@ const SignUp = () => {
       setViewRequestPass(false);
     }
   };
+  useEffect(() => {
+    if (signUpMessage === true) {
+      handleCheckEmail();
+    }
+  }, [signUpMessage]);
 
   const [touchedInput, setTouchedInput] = useState({});
 
@@ -48,10 +63,18 @@ const SignUp = () => {
   const [isVisibilyPassword, setIsVisibilityPassword] = useState(false);
 
   /* Handlers */
-  const handleInputs = (e) => {
-    e.preventDefault()
-    dispatch(signUp(newUser))
-  }
+  const handleInputs = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true); // Cambia a 'true' cuando comience el envío
+
+    try {
+      await dispatch(signUp(newUser));
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsSubmitting(false); // Cambia de nuevo a 'false' cuando termine el envío
+    }
+  };
   const handleTouched = (inputName) => {
     setTouchedInput({
       ...touchedInput,
@@ -89,27 +112,29 @@ const SignUp = () => {
               <div className="input-box-sign-up">
                 <input
                   type="text"
-                  name="name"
+                  name="username"
                   placeholder=""
                   className="input-field-sign-up"
                   autoComplete="off"
-                  value={newUser.name}
+                  value={newUser.username}
                   onChange={handleChange}
-                  onBlur={() => handleTouched("name")}
+                  onBlur={() => handleTouched("username")}
                   style={{
                     border:
-                      errors.name && touchedInput.name ? "1px solid red" : "",
+                      errors.username && touchedInput.username
+                        ? "1px solid red"
+                        : "",
                   }}
                 />
                 <label className="label-input">Nombre</label>
-                {errors.name && touchedInput.name && (
+                {errors.username && touchedInput.username && (
                   <span className="span">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="20"
                       height="20"
                       fill="currentColor"
-                      class="bi bi-exclamation-circle"
+                      className="bi bi-exclamation-circle"
                       viewBox="0 0 16 16"
                     >
                       <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
@@ -118,11 +143,11 @@ const SignUp = () => {
                   </span>
                 )}
               </div>
-              {errors.name && touchedInput.name && (
+              {errors.username && touchedInput.username && (
                 <p
                   style={{ color: "red", marginTop: "4px", marginLeft: "10px" }}
                 >
-                  {errors.email}
+                  {errors.username}
                 </p>
               )}
             </div>
@@ -132,7 +157,7 @@ const SignUp = () => {
                   type="number"
                   name="cuil"
                   pattern="\d{11}"
-                  maxlength="11"
+                  maxLength="11"
                   className="input-field-sign-up"
                   autoComplete="off"
                   value={newUser.cuil}
@@ -184,7 +209,7 @@ const SignUp = () => {
                       width="20"
                       height="20"
                       fill="currentColor"
-                      class="bi bi-exclamation-circle"
+                      className="bi bi-exclamation-circle"
                       viewBox="0 0 16 16"
                     >
                       <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
@@ -193,10 +218,7 @@ const SignUp = () => {
                   </span>
                 )}
               </div>
-              <div className="section-phone-request">
-
-              </div>
-
+              <div className="section-phone-request"></div>
               {errors.phone && touchedInput.phone && (
                 <p
                   style={{ color: "red", marginTop: "4px", marginLeft: "10px" }}
@@ -231,7 +253,7 @@ const SignUp = () => {
                       width="20"
                       height="20"
                       fill="currentColor"
-                      class="bi bi-exclamation-circle"
+                      className="bi bi-exclamation-circle"
                       viewBox="0 0 16 16"
                     >
                       <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
@@ -302,7 +324,7 @@ const SignUp = () => {
                       width="20"
                       height="20"
                       fill="currentColor"
-                      class="bi bi-exclamation-circle"
+                      className="bi bi-exclamation-circle"
                       viewBox="0 0 16 16"
                     >
                       <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
@@ -343,7 +365,7 @@ const SignUp = () => {
                       width="20"
                       height="20"
                       fill="currentColor"
-                      class="bi bi-exclamation-circle"
+                      className="bi bi-exclamation-circle"
                       viewBox="0 0 16 16"
                     >
                       <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
@@ -400,7 +422,7 @@ const SignUp = () => {
                       width="20"
                       height="20"
                       fill="currentColor"
-                      class="bi bi-exclamation-circle"
+                      className="bi bi-exclamation-circle"
                       viewBox="0 0 16 16"
                     >
                       <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
@@ -412,12 +434,21 @@ const SignUp = () => {
               <div className="section-password-request">
                 <ul className="grid-section-request">
                   <div>
-                  <li className="li-password"> <img src={warning} /> Mínimo 8 caracteres</li>
-                  <li className="li-password"><img src={warning} /> Un caracter especial</li>
+                    <li className="li-password">
+                      {" "}
+                      <img src={warning} /> Mínimo 8 caracteres
+                    </li>
+                    <li className="li-password">
+                      <img src={warning} /> Un caracter especial
+                    </li>
                   </div>
                   <div>
-                  <li className="li-password"><img src={warning} /> Una letra mayúscula</li>
-                  <li className="li-password"><img src={warning} /> Al menos un número</li>
+                    <li className="li-password">
+                      <img src={warning} /> Una letra mayúscula
+                    </li>
+                    <li className="li-password">
+                      <img src={warning} /> Al menos un número
+                    </li>
                   </div>
                 </ul>
               </div>
@@ -425,15 +456,14 @@ const SignUp = () => {
           </div>
         </form>
         <div>
-          <div className="input-submit-sign-up">
+          <div className="input-submit-sign-up" onClick={handleInputs}>
             <button
               className="submit-btn-sign-up"
               id="submit"
               type="submit"
-              onClick={handleInputs}
               disabled={
-                errors.name ||
-                !newUser.name ||
+                errors.username ||
+                !newUser.username ||
                 errors.phone ||
                 !newUser.phone ||
                 errors.address ||
@@ -446,7 +476,24 @@ const SignUp = () => {
                 !newUser.password
               }
             ></button>
-            <label htmlFor="submit">Regístrarse</label>
+            <label htmlFor="submit">
+              {isSubmitting ? <Spinner /> : "Regístrarse"}
+            </label>
+          </div>
+          <div style={{display: 'flex', justifyContent: 'center', marginTop: '5px'}}>
+            {signUpMessage !== true && signUpMessage !== '' ? 
+            <p style={{color: 'red', display: 'flex', gap: '5px'
+            }}>{signUpMessage}<svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="currentColor"
+            className="bi bi-exclamation-circle"
+            viewBox="0 0 16 16"
+          >
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+          </svg></p> : ''}
           </div>
           <div className="sign-up-link">
             <p>

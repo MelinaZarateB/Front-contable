@@ -3,15 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { validationRestorePassword } from "../../utils/validations";
 import queryString from 'query-string';
+import { restorePassword } from "../../redux/actions";
+import { useDispatch } from "react-redux";
 
 const RestorePassword = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   /* States */
   const [email, setEmail] = useState({
     email: "",
   });
-  console.log(email.email);
   const [errors, setErrors] = useState({});
 
   /* Handlers */
@@ -20,6 +22,7 @@ const RestorePassword = () => {
   };
   const handleVerificationEmail = () => {
     const query = queryString.stringify({ email: email.email });
+    dispatch(restorePassword(email));
     navigate(`/check-email?${query}`);
   };
   const handleChange = (event) => {

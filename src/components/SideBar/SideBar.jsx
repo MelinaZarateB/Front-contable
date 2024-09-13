@@ -1,5 +1,5 @@
 import "./SideBar.css";
-import Spinner from "../../utils/Spinner/spinner";
+import Spinner from "../../utils/Spinner/Spinner";
 /* Icons */
 import scanner from "./../../assets/scanner.svg";
 import close from "./../../assets/close.svg";

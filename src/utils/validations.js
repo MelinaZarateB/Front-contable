@@ -6,10 +6,10 @@ const regexEmail = /^[^@\s]+@[^@\s]+\.[cC][oO][mM]$/;
 const validations = (inputs) => {
   const errors = {};
 
-  if (inputs.name.trim() === "") {
-    errors.name = "Campo requerido";
+  if (inputs.username.trim() === "") {
+    errors.username = "Campo requerido";
   } else {
-    if (!regexName.test(inputs.name)) {
+    if (!regexName.test(inputs.username)) {
       errors.name = "Solo se permiten letras";
     }
   }

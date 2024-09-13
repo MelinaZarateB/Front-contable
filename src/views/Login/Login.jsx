@@ -1,27 +1,50 @@
 import "./Login.css";
 /* Hooks */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 /* Icons */
 import visibilityOn from "./../../assets/visibility-on.svg";
 import visibilityOff from "./../../assets/visibility-off.svg";
 import { validationsLogin } from "../../utils/validations";
+import { login, restorePassword } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import Spinner from "./../../utils/Spinner/Spinner";
 
 const Login = () => {
+  const loginMessage = useSelector((state) => state.loginMessage)
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   /* States*/
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isVisibilityPassword, setIsVisibilityPassword] = useState(false);
 
   const [errors, setErrors] = useState({});
 
   const [touchedInput, setTouchedInput] = useState({});
 
+  useEffect(() => {
+    if (loginMessage === true) {
+      navigate('/dashboard');
+    }
+  }, [loginMessage])
+
   /* Handlers */
+  const handleInputs = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      await dispatch(login(user));
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsSubmitting(false); 
+    }
+  };
   const handleButtonSignUp = () => {
     navigate("/sign-up");
   };
@@ -117,7 +140,7 @@ const Login = () => {
             </section>
           </div>
         </div>
-        <div className="input-submit">
+        <div className="input-submit" onClick={handleInputs}>
           <button 
           className="submit-btn" 
           type="submit"
@@ -127,8 +150,23 @@ const Login = () => {
             errors.password
           }></button>
           <label htmlFor="submit"
-        >Ingresar</label>
+        > {isSubmitting ? <Spinner /> : "Ingresar"}</label>
         </div>
+        <div style={{display: 'flex', justifyContent: 'center', marginTop: '5px'}}>
+            {loginMessage !== true && loginMessage !== '' ? 
+            <p style={{color: 'red', display: 'flex', gap: '5px'
+            }}>{loginMessage}<svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="currentColor"
+            className="bi bi-exclamation-circle"
+            viewBox="0 0 16 16"
+          >
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+          </svg></p> : ''}
+          </div>
         <div className="sign-up-link">
           <p>
             ¿No tienes una cuenta?{" "}
