@@ -41,6 +41,7 @@ export const login = (user) => {
         `http://localhost:3000/auth/login`,
         user
       );
+      console.log('try', response)
       if (response) {
         dispatch({
           type: LOGIN_SUCCESS,
@@ -52,6 +53,7 @@ export const login = (user) => {
       error.response && error.response.data.message
         ? error.response.data.message
         : "Ocurrio un error inesperado";
+        console.log('catch', message)
       dispatch({
         type: LOGIN_FAILURE,
         payload: message,

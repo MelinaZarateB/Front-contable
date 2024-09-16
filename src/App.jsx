@@ -1,7 +1,9 @@
 /* Components */
-import Login from "./views/Login/Login";
+/*const Login = React.lazy(() => import("./views/Login/Login"))
+const SignUp = React.lazy(() => import("./views/SignUp/SignUp"))*/
+import SignUp from './views/SignUp/SignUp';
+import Login from './views/Login/Login';
 import NavBar from "./components/NavBar/NavBar";
-import SignUp from "./views/SignUp/SignUp";
 import Footer from "./components/Footer/Footer";
 import Dashboard from "./views/Dashboard/Dashboard";
 import ChangePassword from "./views/ChangePassword/ChangePassword";
@@ -10,6 +12,8 @@ import SignUpVerification from "./views/SignUpVerification/SignUpVerification";
 import UploadInvoices from "./views/UploadInvoices/UploadInvoices";
 import AccountActivated from "./views/AccountActivated/AccountActivated";
 import Landing from "./views/Landing/Landing";
+import { Suspense } from 'react';
+import React from 'react';
 /* Hooks */
 import { Route, Routes } from "react-router-dom";
 

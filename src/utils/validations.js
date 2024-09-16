@@ -10,7 +10,7 @@ const validations = (inputs) => {
     errors.username = "Campo requerido";
   } else {
     if (!regexName.test(inputs.username)) {
-      errors.name = "Solo se permiten letras";
+      errors.username = "Solo se permiten letras";
     }
   }
 
