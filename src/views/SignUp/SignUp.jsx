@@ -52,9 +52,10 @@ const SignUp = () => {
   };
   useEffect(() => {
     if (signUpMessage === true) {
-      handleCheckEmail();
+      handleCheckEmail(); 
     }
   }, [signUpMessage]);
+  
 
   const [touchedInput, setTouchedInput] = useState({});
 

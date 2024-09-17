@@ -1,7 +1,7 @@
 .container-dashboard {
     overflow-x: hidden;
     display: grid;
-    grid-template-columns: auto 1fr; /* La primera columna es la sidebar y la segunda es el contenido */
+    grid-template-columns: 14rem 1fr; /* La primera columna es la sidebar y la segunda es el contenido */
     grid-template-rows: auto 1fr; /* La primera fila es la nav y la segunda es el contenido */
 }
 

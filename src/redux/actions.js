@@ -3,9 +3,32 @@ import {
   SIGN_UP_SUCCESS,
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
-  CHECK_EMAIL,
+  CLEAN_LOGIN_MESSAGE,
+  ACTIVATE_ACCOUNT
 } from "./action-types";
 import axios from "axios";
+
+export const activateAccount = (token) => {
+  return async (dispatch) => {
+    try{
+      const response = axios.get(`http://localhost:3000/auth/activate?token=${token}`)
+        console.log(response)
+    }catch(error){
+      const message = error.response && error.response.data.message;
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : "Ocurrio un error inesperado";
+        console.log(message)
+    }
+  }
+}
+
+export const cleanLoginMessage = () => {
+  return {
+    type: CLEAN_LOGIN_MESSAGE,
+    payload: "",
+  };
+};
 
 export const signUp = (newUser) => {
   return async (dispatch) => {
@@ -41,7 +64,7 @@ export const login = (user) => {
         `http://localhost:3000/auth/login`,
         user
       );
-      console.log('try', response)
+      console.log("try", response);
       if (response) {
         dispatch({
           type: LOGIN_SUCCESS,
@@ -53,7 +76,7 @@ export const login = (user) => {
       error.response && error.response.data.message
         ? error.response.data.message
         : "Ocurrio un error inesperado";
-        console.log('catch', message)
+      console.log("catch", message);
       dispatch({
         type: LOGIN_FAILURE,
         payload: message,
@@ -72,14 +95,13 @@ export const restorePassword = (email) => {
         `http://localhost:3000/auth/forgot-password`,
         email
       );
-      console.log('try', response)
+      console.log("try", response);
     } catch (error) {
-        const message = error.response && error.response.data.message;
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : "Ocurrio un error inesperado";
-          console.log('catch', message)
-
+      const message = error.response && error.response.data.message;
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : "Ocurrio un error inesperado";
+      console.log("catch", message);
     }
   };
 };

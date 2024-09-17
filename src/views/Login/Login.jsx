@@ -6,14 +6,30 @@ import { useNavigate } from "react-router-dom";
 import visibilityOn from "./../../assets/visibility-on.svg";
 import visibilityOff from "./../../assets/visibility-off.svg";
 import { validationsLogin } from "../../utils/validations";
-import { login, restorePassword } from "../../redux/actions";
+import { login, restorePassword, cleanLoginMessage, activateAccount } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "./../../utils/Spinner/Spinner";
+import { useLocation } from 'react-router-dom';
+
 
 const Login = () => {
-  const loginMessage = useSelector((state) => state.loginMessage)
+  const loginMessage = useSelector((state) => state.loginMessage);
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
+  const location = useLocation();
+  const getQueryParams = (param) => {
+    return new URLSearchParams(location.search).get(param);
+  };
+
+  // Capturar el token desde la URL
+  const token = getQueryParams('token');
+  console.log(token)
+  useEffect(() => {
+    if (token) {
+      dispatch(activateAccount(token));
+    }
+  }, [token]);
 
   /* States*/
   const [user, setUser] = useState({
@@ -29,9 +45,15 @@ const Login = () => {
 
   useEffect(() => {
     if (loginMessage === true) {
-      navigate('/dashboard');
+      navigate("/dashboard");
     }
-  }, [loginMessage])
+  }, [loginMessage]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(cleanLoginMessage());
+    };
+  }, []);
 
   /* Handlers */
   const handleInputs = async (e) => {
@@ -42,15 +64,15 @@ const Login = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setIsSubmitting(false); 
+      setIsSubmitting(false);
     }
   };
   const handleButtonSignUp = () => {
     navigate("/sign-up");
   };
   const handleRestorePassword = () => {
-    navigate("/restore-password")
-  }
+    navigate("/restore-password");
+  };
   const handleTouched = (inputName) => {
     setTouchedInput({
       ...touchedInput,
@@ -99,34 +121,34 @@ const Login = () => {
             </div>
           </div>
           <div>
-          <div className="input-box password">
-            <div className="input-child-password">
-              <input
-                type={isVisibilityPassword ? "text" : "password"}
-                name="password"
-                className="input-field password"
-                placeholder=""
-                autocomplete="off"
-                value={user.password}
-                onChange={handleChange}
-                onBlur={() => handleTouched("password")}
-              />
-              <label className="label-input">Contraseña</label>
-              {isVisibilityPassword === false ? (
-                <img
-                  src={visibilityOff}
-                  style={{ cursor: "pointer" }}
-                  onClick={visibilityPassword}
+            <div className="input-box password">
+              <div className="input-child-password">
+                <input
+                  type={isVisibilityPassword ? "text" : "password"}
+                  name="password"
+                  className="input-field password"
+                  placeholder=""
+                  autocomplete="off"
+                  value={user.password}
+                  onChange={handleChange}
+                  onBlur={() => handleTouched("password")}
                 />
-              ) : (
-                <img
-                  src={visibilityOn}
-                  style={{ cursor: "pointer" }}
-                  onClick={visibilityPassword}
-                ></img>
-              )}
+                <label className="label-input">Contraseña</label>
+                {isVisibilityPassword === false ? (
+                  <img
+                    src={visibilityOff}
+                    style={{ cursor: "pointer" }}
+                    onClick={visibilityPassword}
+                  />
+                ) : (
+                  <img
+                    src={visibilityOn}
+                    style={{ cursor: "pointer" }}
+                    onClick={visibilityPassword}
+                  ></img>
+                )}
+              </div>
             </div>
-          </div>
           </div>
           <div className="forgot">
             <section className="section-login">
@@ -134,39 +156,56 @@ const Login = () => {
               <label htmlFor="check">Recordarme</label>
             </section>
             <section className="section-login">
-              <a href="#" className="a-link-forgot-password" onClick={handleRestorePassword}>
+              <a
+                href="#"
+                className="a-link-forgot-password"
+                onClick={handleRestorePassword}
+              >
                 Olvidé mi contraseña
               </a>
             </section>
           </div>
         </div>
         <div className="input-submit" onClick={handleInputs}>
-          <button 
-          className="submit-btn" 
-          type="submit"
-          id="submit"
-          disabled={
-            !user.email || errors.email || !user.password ||
-            errors.password
-          }></button>
-          <label htmlFor="submit"
-        > {isSubmitting ? <Spinner /> : "Ingresar"}</label>
+          <button
+            className="submit-btn"
+            type="submit"
+            id="submit"
+            disabled={
+              !user.email || errors.email || !user.password || errors.password
+            }
+          ></button>
+          <label htmlFor="submit">
+            {" "}
+            {isSubmitting ? <Spinner /> : "Ingresar"}
+          </label>
         </div>
-        <div style={{display: 'flex', justifyContent: 'center', marginTop: '5px'}}>
-            {loginMessage !== true && loginMessage !== '' ? 
-            <p style={{color: 'red', display: 'flex', gap: '5px'
-            }}>{loginMessage}<svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="currentColor"
-            className="bi bi-exclamation-circle"
-            viewBox="0 0 16 16"
-          >
-            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
-          </svg></p> : ''}
-          </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "5px",
+          }}
+        >
+          {loginMessage !== true && loginMessage !== "" ? (
+            <p style={{ color: "red", display: "flex", gap: "5px" }}>
+              {loginMessage}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                className="bi bi-exclamation-circle"
+                viewBox="0 0 16 16"
+              >
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+              </svg>
+            </p>
+          ) : (
+            ""
+          )}
+        </div>
         <div className="sign-up-link">
           <p>
             ¿No tienes una cuenta?{" "}
@@ -181,3 +220,4 @@ const Login = () => {
 };
 
 export default Login;
+

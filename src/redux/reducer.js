@@ -1,13 +1,18 @@
-import { LOGIN_FAILURE, LOGIN_SUCCESS, SIGN_UP_FAILURE, SIGN_UP_SUCCESS } from "./action-types";
+import { LOGIN_FAILURE, LOGIN_SUCCESS, SIGN_UP_FAILURE, SIGN_UP_SUCCESS, CLEAN_LOGIN_MESSAGE } from "./action-types";
 
 let initialState = {
     signUpStatus: null,  
     signUpMessage: '',
-    loginMessage: ''
+    loginMessage: '',
 };
 
 const Reducer = (state = initialState, action) => {
     switch(action.type){
+        case CLEAN_LOGIN_MESSAGE: 
+        return{
+            ...state,
+            loginMessage: ''
+        }
         case SIGN_UP_SUCCESS:
             return{
                 ...state,
