@@ -1,11 +1,24 @@
 import "./ChangePassword.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import visibilityOff from "./../../assets/visibility-off.svg";
 import visibilityOn from "./../../assets/visibility-on.svg";
 import warning from "./../../assets/warning.svg";
 import { changePassword } from "../../utils/validations";
+import { changePasswordAction } from "../../redux/actions";
+import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const ChangePassword = () => {
+  const location = useLocation();
+  const dispatch = useDispatch();
+
+  /*const getQueryParams = (param) => {
+    return new URLSearchParams(location.search).get(param);
+  };
+
+  const token = getQueryParams("token");*/
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1lbGluYXphcmF0ZTc3QGdtYWlsLmNvbSIsInN1YiI6IjY2ZTllOGE1ZTljODFkYmFmOTlkZGFkZCIsImFjdGlvbiI6ImZvcmdvdC1wYXNzd29yZCIsImlhdCI6MTcyNjYxNjY1MiwiZXhwIjoxNzI2NjE2OTUyfQ.bDrf2p_zWo35HZ1PYayJ7mbTS-t_KAJVg_favzei9Y8";
+
   /* States */
   const [password, setPassword] = useState({
     password: "",
@@ -18,6 +31,11 @@ const ChangePassword = () => {
     if (isVisibilityPassword === false) setIsVisibilityPassword(true);
     else {
       setIsVisibilityPassword(false);
+    }
+  };
+  const handleChangePassword = () => {
+    if (token && password) {
+      dispatch(changePasswordAction(token, password.password));
     }
   };
   const handleChange = (event) => {
@@ -107,8 +125,13 @@ const ChangePassword = () => {
             </ul>
           </div>
         </div>
-        <button className="button-change-password"
-        disabled={!password.password || errors.password}>Cambiar contraseña</button>
+        <button
+          className="button-change-password"
+          onClick={handleChangePassword}
+          disabled={!password.password || errors.password}
+        >
+          Cambiar contraseña
+        </button>
       </div>
     </section>
   );

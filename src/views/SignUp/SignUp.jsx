@@ -1,7 +1,7 @@
 import "./SignUp.css";
 import { validations } from "./../../utils/validations";
 import { provinces } from "../../utils/provinces";
-import { signUp, checkEmail } from "../../redux/actions";
+import { signUp } from "../../redux/actions";
 /* Hooks */
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";

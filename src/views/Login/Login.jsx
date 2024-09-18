@@ -16,15 +16,13 @@ const Login = () => {
   const loginMessage = useSelector((state) => state.loginMessage);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const location = useLocation();
+  
   const getQueryParams = (param) => {
     return new URLSearchParams(location.search).get(param);
   };
-
   // Capturar el token desde la URL
   const token = getQueryParams('token');
-  console.log(token)
   useEffect(() => {
     if (token) {
       dispatch(activateAccount(token));
