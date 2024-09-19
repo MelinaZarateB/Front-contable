@@ -21,7 +21,7 @@ const Login = () => {
   const getQueryParams = (param) => {
     return new URLSearchParams(location.search).get(param);
   };
-  // Capturar el token desde la URL
+
   const token = getQueryParams('token');
   useEffect(() => {
     if (token) {

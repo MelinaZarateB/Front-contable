@@ -6,7 +6,8 @@ import {
   CLEAN_LOGIN_MESSAGE,
   ACTIVATE_ACCOUNT,
   RESTORE_PASSWORD,
-  CHANGE_PASSWORD,
+  CHANGE_PASSWORD_SUCCESS,
+  CHANGE_PASSWORD_FAILURE,
 } from "./action-types";
 import axios from "axios";
 
@@ -108,20 +109,30 @@ export const restorePassword = (email) => {
   };
 };
 export const changePasswordAction = (token, password) => {
-  console.log(token, password);
-  return async () => {
+  console.log(token, password)
+  return async (dispatch) => {
     try {
-      const response = await axios.post('http://localhost:3000/auth/reset-password', {
-        token,
-        password: password,
+      const response = await axios.post(
+        `http://localhost:3000/auth/reset-password?token=${token}`,
+        {
+          password: password,
+        }
+      );
+      console.log(response.data.message);
+      dispatch({
+        type: CHANGE_PASSWORD_SUCCESS,
+        payload: response.data.message,
       });
-      console.log(response);
     } catch (error) {
       const message = error.response && error.response.data.message;
       error.response && error.response.data.message
         ? error.response.data.message
         : "Ocurrio un error inesperado";
       console.log("catch", message);
+      dispatch({
+        type: CHANGE_PASSWORD_FAILURE,
+        payload: message,
+      });
     }
   };
 };
